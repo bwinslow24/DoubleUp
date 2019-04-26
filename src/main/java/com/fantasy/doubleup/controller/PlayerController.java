@@ -1,6 +1,7 @@
 package com.fantasy.doubleup.controller;
 
 import com.fantasy.doubleup.domain.Player;
+import com.fantasy.doubleup.domain.PlayerSeasonStats;
 import com.fantasy.doubleup.service.PlayerService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -36,13 +37,13 @@ public class PlayerController {
 
     }
 
-    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Player> getPlayerById(@PathVariable Integer id) {
+    @RequestMapping(path = "/{playerId}", method = RequestMethod.GET)
+    public ResponseEntity<Player> getPlayerById(@PathVariable Integer playerId) {
         try {
-            Player player = this.playerService.getPlayerById(id);
+            Player player = this.playerService.getPlayerById(playerId);
             return new ResponseEntity<>(player, HttpStatus.OK);
         } catch (Exception e) {
-            LOG.error("Error occurred retrieving player " + id + "\n"+e.toString());
+            LOG.error("Error occurred retrieving player " + playerId + "\n"+e.toString());
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
@@ -70,5 +71,16 @@ public class PlayerController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
+
+//    @RequestMapping(path="/{playerId}/seasonStats", method = RequestMethod.GET)
+//    public ResponseEntity<List<PlayerSeasonStats>> getSeasonStatsByPlayerId(@PathVariable Integer playerId){
+//        try{
+//
+//           return new ResponseEntity<>()
+//        } catch (Exception e) {
+//            LOG.error("Error occured get sesason stats for player " + playerId + "\n" + e.toString());
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//        }
+//    }
 
 }

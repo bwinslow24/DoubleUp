@@ -8,4 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @Repository
 public interface PlayerSeasonStatsRepository extends JpaRepository<PlayerSeasonStats, Integer> {
+
+    PlayerSeasonStats getPlayerSeasonStatsByPlayerId(Integer id);
 }
