@@ -46,7 +46,7 @@ public class MapToJpa {
 
     }
 
-    public static PlayerSeasonStats playerSeasonStats(Player playerSeasonStatsJpa, com.fantasy.doubleup.domain.PlayerSeasonStats payload) throws Exception {
+    public static PlayerSeasonStats playerSeasonStats(PlayerSeasonStats playerSeasonStatsJpa, com.fantasy.doubleup.domain.PlayerSeasonStats payload) throws Exception {
         ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map(payload, PlayerSeasonStats.class);
     }

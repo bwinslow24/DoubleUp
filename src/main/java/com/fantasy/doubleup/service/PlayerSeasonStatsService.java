@@ -1,8 +1,10 @@
 package com.fantasy.doubleup.service;
 
+import com.fantasy.doubleup.data.JPA.Player;
 import com.fantasy.doubleup.data.PlayerSeasonStatsRepository;
 import com.fantasy.doubleup.domain.PlayerSeasonStats;
 import com.fantasy.doubleup.mappings.MapToDomain;
+import com.fantasy.doubleup.mappings.MapToJpa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,9 +28,14 @@ public class PlayerSeasonStatsService {
         return MapToDomain.playerSeasonStats(playerSeasonStatsList);
     }
 
-//    public List<PlayerSeasonStats> getSeasonStatsByPlayerId(Integer id){
-//        List<com.fantasy.doubleup.data.JPA.PlayerSeasonStats> playerSeasonStatsList = this.playerSeasonStatsRepository.getPlayerSeasonStatsByPlayerId(id);
-//        return MapToDomain.playerSeasonStats(playerSeasonStatsList);
-//    }
+    public List<PlayerSeasonStats> getSeasonStatsByPlayerId(Integer id){
+        List<com.fantasy.doubleup.data.JPA.PlayerSeasonStats> playerSeasonStatsList = this.playerSeasonStatsRepository.getPlayerSeasonStatsByPlayerId(id);
+        return MapToDomain.playerSeasonStats(playerSeasonStatsList);
+    }
+
+    public Integer addPlayerSeasonStats(PlayerSeasonStats payload) throws Exception {
+        com.fantasy.doubleup.data.JPA.PlayerSeasonStats savedPlayerSeasonStats = this.playerSeasonStatsRepository.saveAndFlush(MapToJpa.playerSeasonStats(null, payload));
+        return savedPlayerSeasonStats.getId();
+    }
 
 }
