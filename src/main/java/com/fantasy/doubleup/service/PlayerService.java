@@ -25,6 +25,7 @@ public class PlayerService {
 
     public List<Player> getPlayers() throws Exception {
         List<com.fantasy.doubleup.data.JPA.Player> jpaPlayerList = this.playerRepository.findAll();
+
         return MapToDomain.player(jpaPlayerList);
     }
 
